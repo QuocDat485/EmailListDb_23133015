@@ -2,7 +2,7 @@ FROM tomcat:9.0-jdk17
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY EmailListDb_23133015.war /usr/local/tomcat/webapps/ROOT.war
+COPY SimpleEmailApp-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose cổng 8080
 EXPOSE 8080

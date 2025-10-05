@@ -7,11 +7,11 @@
         <class>com.example.model.User</class>
         <properties>
             <!-- URL kết nối đến cơ sở dữ liệu -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/email_list_db"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://dpg-d3h44eqli9vc73dr2o4g-a.oregon-postgres.render.com/email_list_db_dat23133015?sslmode=require"/>
             <!-- Tên người dùng -->
-            <property name="javax.persistence.jdbc.user" value="quocdat123"/>
+            <property name="javax.persistence.jdbc.user" value="email_list_db_dat23133015_user"/>
             <!-- Mật khẩu -->
-            <property name="javax.persistence.jdbc.password" value="quocdat123"/>
+            <property name="javax.persistence.jdbc.password" value="XgoKsALkMXfyjwJ019rpYcQV9eBLly2Y"/>
             <!-- Driver JDBC cho PostgreSQL -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <!-- Dialect của Hibernate cho PostgreSQL -->
