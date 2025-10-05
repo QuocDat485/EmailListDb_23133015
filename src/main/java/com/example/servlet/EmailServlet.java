@@ -19,9 +19,14 @@ public class EmailServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         User user = new User(firstName, lastName, email);
-        UserDB.insert(user);
-
-        request.setAttribute("user", user);
-        request.getRequestDispatcher("/thanks.jsp").forward(request, response);
+        try {
+            UserDB.insert(user);
+            request.setAttribute("message", "User added successfully!");
+            request.setAttribute("messageType", "success");
+        } catch (Exception e) {
+            request.setAttribute("message", "Failed to add user: " + e.getMessage());
+            request.setAttribute("messageType", "error");
+        }
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

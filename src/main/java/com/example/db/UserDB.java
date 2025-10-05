@@ -33,4 +33,67 @@ public class UserDB {
             em.close();
         }
     }
+
+    public static void update(User user) {
+        if (user == null || user.getId() == null) {
+            LOGGER.severe("User object or ID is null, cannot update.");
+            return;
+        }
+        EntityManager em = DBUtil.getEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            LOGGER.info("Updating user: " + user.getEmail());
+            User existingUser = em.find(User.class, user.getId());
+            if (existingUser != null) {
+                existingUser.setFirstName(user.getFirstName());
+                existingUser.setLastName(user.getLastName());
+                existingUser.setEmail(user.getEmail());
+                em.merge(existingUser);
+                em.flush(); // Ép ghi dữ liệu ngay
+                trans.commit();
+                LOGGER.info("User updated successfully: " + user.getEmail());
+            } else {
+                LOGGER.warning("User with ID " + user.getId() + " not found.");
+                trans.rollback();
+            }
+        } catch (Exception e) {
+            if (trans.isActive()) {
+                trans.rollback();
+            }
+            LOGGER.severe("Failed to update user: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
+    public static void delete(Long id) {
+        if (id == null) {
+            LOGGER.severe("ID is null, cannot delete.");
+            return;
+        }
+        EntityManager em = DBUtil.getEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            LOGGER.info("Deleting user with ID: " + id);
+            User user = em.find(User.class, id);
+            if (user != null) {
+                em.remove(user);
+                em.flush(); // Ép ghi dữ liệu ngay
+                trans.commit();
+                LOGGER.info("User deleted successfully: ID " + id);
+            } else {
+                LOGGER.warning("User with ID " + id + " not found.");
+                trans.rollback();
+            }
+        } catch (Exception e) {
+            if (trans.isActive()) {
+                trans.rollback();
+            }
+            LOGGER.severe("Failed to delete user: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
 }

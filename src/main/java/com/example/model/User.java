@@ -8,17 +8,17 @@ import javax.persistence.Table;
 import java.util.logging.Logger;
 
 @Entity
-@Table(name = "users") // Chỉ định tên bảng là "users"
+@Table(name = "users") // Tên bảng trong PostgreSQL
 public class User {
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Sử dụng SERIAL trong PostgreSQL
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String firstName;  // Khớp với cột firstname
+    private String lastName;   // Khớp với cột lastname
+    private String email;      // Khớp với cột email, UNIQUE
 
     public User() {}
 
