@@ -16,9 +16,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Sử dụng SERIAL trong PostgreSQL
     private Long id;
 
-    private String firstName;  // Khớp với cột firstname
-    private String lastName;   // Khớp với cột lastname
-    private String email;      // Khớp với cột email, UNIQUE
+    private String firstName;
+    private String lastName;
+    private String email;
 
     public User() {}
 
@@ -26,7 +26,6 @@ public class User {
         this.firstName = (firstName != null) ? firstName.trim() : "";
         this.lastName = (lastName != null) ? lastName.trim() : "";
         this.email = (email != null) ? email.trim() : "";
-        LOGGER.info("User object created with: firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email);
     }
 
     public Long getId() {
